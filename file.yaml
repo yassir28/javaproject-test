@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: app-deployment-v1
+  name: app-deployment-v2
   labels:
     app: java
 spec:
