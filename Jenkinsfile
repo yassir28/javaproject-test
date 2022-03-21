@@ -10,7 +10,7 @@ pipeline {
                     def minor = versions[0] + '.' + versions[1]
                     def patch = version.trim()
                     docker.withRegistry('', 'my-dockerhub-credentials') {
-                        def image = docker.build('blog-docker-versioning:latest')
+                        def image = docker.build('azujal/blog-docker-versioning:latest')
                         image.push()
                         image.push(major)
                         image.push(minor)
