@@ -35,7 +35,7 @@ pipeline {
               }
             }
             steps {
-                sh  'sudo kubectl run javapp --image=my-java-app --port=80'
+                sh  'sudo kubectl run javapp --image=azujal/blog-docker-versioning:latest --port=80'
                 kubernetesDeploy(configs:"file.yaml", kubeconfigId: "mykubeconfig" , dockerCredentials: [[credentialsId: 'my-dockerhub-credentials']])
                 sh "sudo kubectl create -f file.yaml"
                         
