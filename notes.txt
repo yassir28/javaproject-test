@@ -1,0 +1,50 @@
+imagePullSecrets: []
+nameOverride: "cherry-app"
+fullnameOverride: "cherry-chart"
+
+serviceAccount:
+ # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  Name: "cherrybomb"
+
+service:
+  type: NodePort
+  port: 80
+
+ingress:
+  enabled: false
+
+deploy with:
+helm install my-cherry-chart buildachart/ --values buildachart/values.yaml
+
+-----------------------
+helm create phoenixnap
+
+minikube status
+minikube start
+helm install phoenix-chart phoenixnap/ --values phoenixnap/values.yaml
+
+kubectl get --namespace default -o jsonpath="{.spec.ports[0].nodePort}" services phoenix-chart          //node port
+kubectl get nodes --namespace default -o jsonpath="kubectl --namespace default port-forward $POD_NAME 8080:$CONTAINER_PORT"                //ip 
+
+
+
+
+metadata:
+  labels:
+     version: {{ .Values.tag}}
+
+spec:
+  containers:
+    - image: dockerRepository/imageTag:{{ .Values.tag }}
+
+
+values
+tag: <your value>
+
+Everytime you need to update the tag with Image version, you can simple update the tag in values.yml and run:
+helm upgrade --set tag=<your value> <name of your deployment> ./<name of your chart>
