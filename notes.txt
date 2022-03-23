@@ -48,3 +48,21 @@ tag: <your value>
 
 Everytime you need to update the tag with Image version, you can simple update the tag in values.yml and run:
 helm upgrade --set tag=<your value> <name of your deployment> ./<name of your chart>
+
+
+
+our previous file.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-deployment-{{$.VERSION}}
+  labels:
+    app: java
+spec:
+  containers: 
+  - name: java
+    image: azujal/blog-docker-versioning:latest
+    imagePullPolicy: Never
+    resources:
+      limits:
+        memory: "200Mi"our previous 
