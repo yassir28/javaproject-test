@@ -43,7 +43,7 @@ pipeline {
                 //sh  'sudo kubectl run javapp --image=azujal/blog-docker-versioning:latest --port=80'
                 //kubernetesDeploy(credentialsType: 'KubeConfig', kubeconfigId: "mykubeconfig", configs:"file.yaml",  dockerCredentials: [[credentialsId: 'my-dockerhub-credentials']])
                 //sh "sudo kubectl create -f file.yaml"
-                sh "helm upgrade --install --force --set name=${NAME} --set image.tag=${VERSION} --set domain=${DOMAIN} ${NAME} ./helm"
+                sh "helm upgrade --install --force --set name=${NAME} --set image.tag=latest --set domain=${DOMAIN} ${NAME} ./helm"
       
             }
         }
